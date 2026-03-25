@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Service Call Analysis — 39472 N Darner Dr</title>
+  <style>
+    :root {
+      --bg: #0f1117;
+      --surface: #1a1d27;
+      --surface2: #22263a;
+      --border: #2d3150;
+      --accent: #6c63ff;
+      --accent2: #00c9a7;
+      --warn: #f59e0b;
+      --danger: #ef4444;
+      --success: #22c55e;
+      --text: #e2e8f0;
+      --text-muted: #8892a4;
+      --radius: 12px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    /* Header */
+    header {
+      background: linear-gradient(135deg, #1a1d27 0%, #12162b 100%);
+      border-bottom: 1px solid var(--border);
+      padding: 2rem 0;
+    }
+    .header-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+    .badge {
+      display: inline-block;
+      background: rgba(108,99,255,0.15);
+      color: #a78bfa;
+      border: 1px solid rgba(108,99,255,0.3);
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.25rem 0.85rem;
+      margin-bottom: 1rem;
+    }
+    header h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.4rem;
+    }
+    header p { color: var(--text-muted); font-size: 0.95rem; }
+    .meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      margin-top: 1.25rem;
+    }
+    .meta-item { display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem; color: var(--text-muted); }
+    .meta-item strong { color: var(--text); }
+    .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent2); flex-shrink: 0; }
+
+    /* Layout */
+    main { max-width: 1100px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+
+    /* Score bar */
+    .score-banner {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem 2rem;
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+    }
+    .score-circle {
+      width: 80px; height: 80px; flex-shrink: 0;
+      border-radius: 50%;
+      background: conic-gradient(var(--accent2) calc(var(--pct) * 1%), var(--border) 0);
+      display: flex; align-items: center; justify-content: center;
+      position: relative;
+    }
+    .score-circle::before {
+      content: '';
+      width: 62px; height: 62px;
+      background: var(--surface);
+      border-radius: 50%;
+      position: absolute;
+    }
+    .score-num { position: relative; z-index: 1; font-size: 1.1rem; font-weight: 700; }
+    .score-info h2 { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.2rem; }
+    .score-info p { font-size: 0.85rem; color: var(--text-muted); }
+    .score-chips { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.75rem; }
+    .chip {
+      font-size: 0.72rem; font-weight: 600; letter-spacing: 0.04em;
+      padding: 0.2rem 0.7rem; border-radius: 999px;
+    }
+    .chip-green  { background: rgba(34,197,94,0.15);  color: #4ade80; border: 1px solid rgba(34,197,94,0.25);  }
+    .chip-yellow { background: rgba(245,158,11,0.15); color: #fbbf24; border: 1px solid rgba(245,158,11,0.25); }
+    .chip-red    { background: rgba(239,68,68,0.15);  color: #f87171; border: 1px solid rgba(239,68,68,0.25);  }
+
+    /* Section headers */
+    .section-label {
+      font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--text-muted);
+      margin: 2.5rem 0 1rem;
+    }
+
+    /* Cards grid */
+    .grid { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); }
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.25rem 1.5rem;
+      transition: border-color 0.2s;
+    }
+    .card:hover { border-color: var(--accent); }
+    .card-head {
+      display: flex; align-items: center; gap: 0.75rem;
+      margin-bottom: 0.75rem;
+    }
+    .card-icon {
+      width: 36px; height: 36px; border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem; flex-shrink: 0;
+    }
+    .icon-green  { background: rgba(34,197,94,0.12); }
+    .icon-yellow { background: rgba(245,158,11,0.12); }
+    .icon-red    { background: rgba(239,68,68,0.12); }
+    .icon-blue   { background: rgba(108,99,255,0.12); }
+    .icon-teal   { background: rgba(0,201,167,0.12); }
+
+    .card-head-text h3 { font-size: 0.9rem; font-weight: 600; }
+    .card-head-text span { font-size: 0.75rem; color: var(--text-muted); }
+
+    .status-badge {
+      display: inline-flex; align-items: center; gap: 0.3rem;
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.04em;
+      padding: 0.2rem 0.65rem; border-radius: 999px; margin-bottom: 0.6rem;
+    }
+    .status-pass   { background: rgba(34,197,94,0.15);  color: #4ade80; }
+    .status-partial { background: rgba(245,158,11,0.15); color: #fbbf24; }
+    .status-fail   { background: rgba(239,68,68,0.15);  color: #f87171; }
+
+    .card p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.6; }
+    .card p + p { margin-top: 0.5rem; }
+    .card strong { color: var(--text); }
+
+    /* Quote block */
+    .quote {
+      background: var(--surface2);
+      border-left: 3px solid var(--accent);
+      border-radius: 0 6px 6px 0;
+      padding: 0.6rem 0.9rem;
+      font-size: 0.8rem;
+      color: #c4c9d4;
+      font-style: italic;
+      margin-top: 0.75rem;
+    }
+
+    /* Call type card */
+    .call-type-card {
+      background: linear-gradient(135deg, rgba(108,99,255,0.1), rgba(0,201,167,0.05));
+      border: 1px solid rgba(108,99,255,0.3);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      margin-bottom: 1rem;
+    }
+    .call-type-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .call-type-card p { font-size: 0.87rem; color: var(--text-muted); }
+
+    /* Sales insight */
+    .insight-list { list-style: none; }
+    .insight-list li {
+      display: flex; gap: 0.75rem; align-items: flex-start;
+      padding: 0.6rem 0; border-bottom: 1px solid var(--border);
+      font-size: 0.85rem;
+    }
+    .insight-list li:last-child { border-bottom: none; }
+    .insight-icon { flex-shrink: 0; font-size: 0.95rem; margin-top: 0.05rem; }
+
+    /* Transcript */
+    .transcript-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      max-height: 500px;
+      overflow-y: auto;
+      padding: 1.25rem 1.5rem;
+    }
+    .transcript-box::-webkit-scrollbar { width: 6px; }
+    .transcript-box::-webkit-scrollbar-track { background: transparent; }
+    .transcript-box::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+    .utterance { display: flex; gap: 0.75rem; padding: 0.45rem 0; }
+    .speaker-tag {
+      flex-shrink: 0; font-size: 0.68rem; font-weight: 700;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      padding: 0.2rem 0.55rem; border-radius: 4px; height: fit-content; margin-top: 0.05rem;
+    }
+    .spk-A { background: rgba(108,99,255,0.2); color: #a78bfa; }
+    .spk-B { background: rgba(0,201,167,0.2); color: #34d399; }
+    .utt-text { font-size: 0.83rem; color: var(--text-muted); line-height: 1.55; }
+
+    /* Progress bars */
+    .progress-row { margin-bottom: 0.75rem; }
+    .progress-label { display: flex; justify-content: space-between; font-size: 0.78rem; margin-bottom: 0.3rem; }
+    .progress-label span:first-child { color: var(--text-muted); }
+    .progress-label span:last-child { font-weight: 600; }
+    .progress-bar { height: 6px; background: var(--border); border-radius: 3px; overflow: hidden; }
+    .progress-fill { height: 100%; border-radius: 3px; }
+    .fill-green  { background: var(--success); }
+    .fill-yellow { background: var(--warn); }
+    .fill-accent { background: var(--accent); }
+    .fill-teal   { background: var(--accent2); }
+    .fill-red    { background: var(--danger); }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--border);
+      text-align: center;
+      padding: 1.5rem;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    @media (max-width: 640px) {
+      header h1 { font-size: 1.4rem; }
+      .score-banner { flex-direction: column; align-items: flex-start; gap: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="badge">HVAC Service Call Analysis</div>
+    <h1>39472 N Darner Dr — Call Recording</h1>
+    <p>AI-powered compliance &amp; sales performance review</p>
+    <div class="meta-row">
+      <div class="meta-item"><span class="dot"></span><strong>Duration:</strong>&nbsp;32 min 18 sec</div>
+      <div class="meta-item"><span class="dot"></span><strong>Customer:</strong>&nbsp;Luis</div>
+      <div class="meta-item"><span class="dot"></span><strong>Speakers:</strong>&nbsp;Technician (B) + Customer (A)</div>
+      <div class="meta-item"><span class="dot"></span><strong>Call Type:</strong>&nbsp;Maintenance + Replacement Sales</div>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <!-- Overall Score -->
+  <div class="score-banner">
+    <div class="score-circle" style="--pct:78">
+      <span class="score-num">78%</span>
+    </div>
+    <div class="score-info" style="flex:1">
+      <h2>Overall Compliance Score</h2>
+      <p>Strong sales execution and solution explanation. Main gap: missing technician/company introduction.</p>
+      <div class="score-chips">
+        <span class="chip chip-green">✓ Solution Explained</span>
+        <span class="chip chip-green">✓ Problem Diagnosed</span>
+        <span class="chip chip-green">✓ Upsell Attempted</span>
+        <span class="chip chip-green">✓ Maintenance Plan Offered</span>
+        <span class="chip chip-green">✓ Courteous Close</span>
+        <span class="chip chip-yellow">⚠ Partial Introduction</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Compliance Score Breakdown -->
+  <div class="section-label">Compliance Scorecard</div>
+  <div class="card" style="margin-bottom:1rem;">
+    <div class="progress-row">
+      <div class="progress-label"><span>Introduction</span><span style="color:var(--warn)">50%</span></div>
+      <div class="progress-bar"><div class="progress-fill fill-yellow" style="width:50%"></div></div>
+    </div>
+    <div class="progress-row">
+      <div class="progress-label"><span>Problem Diagnosis</span><span style="color:var(--success)">85%</span></div>
+      <div class="progress-bar"><div class="progress-fill fill-green" style="width:85%"></div></div>
+    </div>
+    <div class="progress-row">
+      <div class="progress-label"><span>Solution Explanation</span><span style="color:var(--success)">95%</span></div>
+      <div class="progress-bar"><div class="progress-fill fill-teal" style="width:95%"></div></div>
+    </div>
+    <div class="progress-row">
+      <div class="progress-label"><span>Upsell Attempt</span><span style="color:var(--success)">90%</span></div>
+      <div class="progress-bar"><div class="progress-fill fill-green" style="width:90%"></div></div>
+    </div>
+    <div class="progress-row">
+      <div class="progress-label"><span>Maintenance Plan Offer</span><span style="color:var(--warn)">65%</span></div>
+      <div class="progress-bar"><div class="progress-fill fill-yellow" style="width:65%"></div></div>
+    </div>
+    <div class="progress-row">
+      <div class="progress-label"><span>Closing &amp; Thank You</span><span style="color:var(--success)">80%</span></div>
+      <div class="progress-bar"><div class="progress-fill fill-accent" style="width:80%"></div></div>
+    </div>
+  </div>
+
+  <!-- Key Stage Cards -->
+  <div class="section-label">Key Call Stages</div>
+  <div class="grid">
+
+    <!-- Introduction -->
+    <div class="card">
+      <div class="card-head">
+        <div class="card-icon icon-yellow">👋</div>
+        <div class="card-head-text">
+          <h3>Introduction</h3>
+          <span>Greeting &amp; company identification</span>
+        </div>
+      </div>
+      <div class="status-badge status-partial">⚠ Partial</div>
+      <p>Technician greeted the customer by name (<strong>"Hey, Luis"</strong>) showing strong familiarity, but <strong>never stated their own name or company name</strong> during the call. The conversation moved immediately into the work completed without a formal self-introduction.</p>
+      <div class="quote">"Hey, Luis. Got you all done. The reason that took so long is I just kind of also built all your equipment options…"</div>
+    </div>
+
+    <!-- Problem Diagnosis -->
+    <div class="card">
+      <div class="card-head">
+        <div class="card-icon icon-blue">🔍</div>
+        <div class="card-head-text">
+          <h3>Problem Diagnosis</h3>
+          <span>Understanding the customer's issue</span>
+        </div>
+      </div>
+      <div class="status-badge status-pass">✓ Pass</div>
+      <p>The technician clearly communicated findings: a <strong>20°F temperature differential</strong> improvement from the repair (was at 41°F below freezing), ongoing <strong>mold issues</strong>, and an aging refrigerant system still running on phased-out <strong>R410A</strong>. Called the repair a "bandaid" and predicted efficiency drop within <strong>1–2 months</strong>.</p>
+      <div class="quote">"Definitely bandaid. It is old… I would say month to two months. I think we'll start to see the efficiency drop again."</div>
+    </div>
+
+    <!-- Solution Explanation -->
+    <div class="card">
+      <div class="card-head">
+        <div class="card-icon icon-teal">💡</div>
+        <div class="card-head-text">
+          <h3>Solution Explanation</h3>
+          <span>Services performed &amp; options presented</span>
+        </div>
+      </div>
+      <div class="status-badge status-pass">✓ Excellent</div>
+      <p>Provided an <strong>outstanding</strong> walkthrough of 4 replacement options: like-for-like (15 SEER, R32), high-efficiency gas, Bryant heat pump (inverter), and Bosch heat pump (top-venting). Explained rebates (<strong>SVCE $2,500</strong>, <strong>TECH $1,500</strong>, up to <strong>$2,000 tax credit</strong>), financing tiers, permits, HERS test, and duct sealing.</p>
+      <div class="quote">"Heat pumps are actually just got introduced some more rebates… those actually are getting quite affordable at the moment."</div>
+    </div>
+
+    <!-- Upsell Attempts -->
+    <div class="card">
+      <div class="card-head">
+        <div class="card-icon icon-green">📈</div>
+        <div class="card-head-text">
+          <h3>Upsell Attempts</h3>
+          <span>Additional services &amp; products offered</span>
+        </div>
+      </div>
+      <div class="status-badge status-pass">✓ Strong</div>
+      <p>Multiple strategic upsells: <strong>duct sealing promotion</strong> (needed for HERS test rebate), <strong>Bosch heat pump</strong> added live when customer expressed a preference, <strong>waived repair charge</strong> as an incentive to sign same-day, and a <strong>$1,000 deposit</strong> collected at close.</p>
+      <div class="quote">"So much easier if I didn't have to charge for the repair today and if we actually just basically considered it as a complimentary thing for you."</div>
+    </div>
+
+    <!-- Maintenance Plan -->
+    <div class="card">
+      <div class="card-head">
+        <div class="card-icon icon-yellow">🛡️</div>
+        <div class="card-head-text">
+          <h3>Maintenance Plan Offer</h3>
+          <span>Long-term service agreements</span>
+        </div>
+      </div>
+      <div class="status-badge status-partial">⚠ Mentioned</div>
+      <p>Maintenance program was referenced as a <strong>warranty benefit</strong> — matching the manufacturer's 10-year parts and warranty — but was not pitched as a standalone recurring service agreement. No pricing or enrollment details were discussed, representing a <strong>missed upsell</strong>.</p>
+      <div class="quote">"If you're on this maintenance program with us, we actually completely match the manufacturer warranties. It's essentially 10 years parts and 10 year manufacturer warranty."</div>
+    </div>
+
+    <!-- Closing -->
+    <div class="card">
+      <div class="card-head">
+        <div class="card-icon icon-green">🤝</div>
+        <div class="card-head-text">
+          <h3>Closing &amp; Thank You</h3>
+          <span>Call conclusion &amp; next steps</span>
+        </div>
+      </div>
+      <div class="status-badge status-pass">✓ Good</div>
+      <p>Handled the <em>"need to talk to my wife"</em> objection gracefully. Offered to <strong>send polished estimates</strong> for just the two heat pump options, communicated a <strong>3-day right to cancel</strong>, and collected a <strong>$1,000 deposit</strong>. No explicit verbal "thank you" was recorded, but the interaction remained professional and warm throughout.</p>
+      <div class="quote">"We always have a reputable three day right to cancel… I'll pretty his estimates up a little bit more and I'll include the duct sealing promotion."</div>
+    </div>
+
+  </div>
+
+  <!-- Call Type -->
+  <div class="section-label">Call Type Identification</div>
+  <div class="call-type-card">
+    <h3>🔧 Maintenance Service Call → Full Replacement Sales Consultation</h3>
+    <p>The call began as a <strong>maintenance/repair visit</strong> for an aging HVAC system (refrigerant top-up, temperature check, mold inspection). The technician skillfully <strong>transitioned into a full replacement sales consultation</strong>, presenting four equipment options ranging from a like-for-like replacement (~$15K) to a premium Bosch heat pump. The customer expressed clear interest in heat pump options and provided a credit card for a deposit by end of call.</p>
+  </div>
+
+  <!-- Sales Insights -->
+  <div class="section-label">Sales Insights</div>
+  <div class="card" style="margin-bottom:1rem;">
+    <ul class="insight-list">
+      <li>
+        <span class="insight-icon">✅</span>
+        <div><strong>Strong rapport-building:</strong> Technician connected personally (cat conversation, mentioned colleague Alex), making the customer comfortable for a long consultative sale.</div>
+      </li>
+      <li>
+        <span class="insight-icon">✅</span>
+        <div><strong>Urgency via rebates:</strong> Highlighted that the TECH rebate was <em>"just reintroduced like yesterday"</em> — effective urgency trigger that creates a reason to act quickly.</div>
+      </li>
+      <li>
+        <span class="insight-icon">✅</span>
+        <div><strong>Customer-adaptive selling:</strong> When Luis mentioned preferring top-venting units, the technician immediately built a Bosch estimate live — showing responsiveness and keeping the customer engaged.</div>
+      </li>
+      <li>
+        <span class="insight-icon">✅</span>
+        <div><strong>Education-first approach:</strong> Explained California gas phase-outs, inverter technology, HERS testing, and Energy Star rebates — positioning the technician as a trusted expert, not just a salesperson.</div>
+      </li>
+      <li>
+        <span class="insight-icon">✅</span>
+        <div><strong>Clear buying signals captured:</strong> Customer stated <em>"I would be interested in the heat pump. Maybe these two. I'm not interested in the gas."</em> — technician correctly narrowed scope to two options.</div>
+      </li>
+      <li>
+        <span class="insight-icon">⚠️</span>
+        <div><strong>Missed: Maintenance plan as a standalone product.</strong> The plan was only mentioned as a warranty perk. A dedicated pitch with pricing could have added recurring revenue.</div>
+      </li>
+      <li>
+        <span class="insight-icon">⚠️</span>
+        <div><strong>Missed: Referral ask.</strong> Strong rapport and a satisfied customer (post-repair relief evident) was a prime moment to ask for a referral or review — no ask was made.</div>
+      </li>
+      <li>
+        <span class="insight-icon">⚠️</span>
+        <div><strong>Spouse objection not closed:</strong> The "need to discuss with wife" objection was accepted without attempting to schedule a follow-up call with both decision-makers present — a common lost-sale pattern.</div>
+      </li>
+      <li>
+        <span class="insight-icon">⚠️</span>
+        <div><strong>No company/technician name stated:</strong> The technician never introduced their own name or company name. For a ~$25K+ purchase, identity and brand trust are critical conversion factors.</div>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Full Transcript -->
+  <div class="section-label">Full Transcript (Speaker-Labeled)</div>
+  <div class="transcript-box">
+    <div class="utterance"><span class="speaker-tag spk-A">Customer</span><span class="utt-text">Hello.</span></div>
+    <div class="utterance"><span class="speaker-tag spk-B">Tech</span><span class="utt-text">Hey, Luis. Got you all done. The reason that took so long is I just kind of also built all your equipment options when I was out there too.</span></div>
+    <div class="utterance"><span class="speaker-tag spk-A">Customer</span><span class="utt-text">Okay, sure.</span></div>
+    <div class="utterance"><span class="speaker-tag spk-B">Tech</span><span class="utt-text">I'd love to wrap up with you here.</span></div>
+    <div class="utterance"><span class="speaker-tag spk-A">Customer</span><span class="utt-text">Of course, of course.</span></div>
+    <div class="utterance"><span class="speaker-tag spk-B">Tech</span><span class="utt-text">So what are you up to for the rest of the day?</span></div>
+    <div class="utterance"><span class="speaker-tag spk-A">Customer</span><span class="utt-text">Oh, keep working. Yeah, yeah, most of the day. Sometimes I go through.</span></div>
+    <div class="utterance"><span class="speaker-tag spk-B">Tech</span><span class="utt-text">I literally can't work from anywhere else but your home.</span></div>
+    <div class="utterance"><span class="speaker-tag spk-A">Customer</span><span class="utt-text">I know.</span></div>
+    <div class="utterance"><span class="speaker-tag spk-B">Tech</span><span class="utt-text">Yeah. AI is a big thing, man. But so just to — let's go right to just the differences here. I just wanted to show you. So remember before how we had that before that below freezing temperature at 41. It's good to see. And now we have that 20 degree difference as well. Did a really fancy charge there for you and got you in good shape. All that to say. Definitely bandaid. Sure.</span></div>
+    <div class="utterance"><span class="speaker-tag spk-A">Customer</span><span class="utt-text">Yeah.</span></div>
+    <div class="utterance"><span class="speaker-tag spk-B">Tech</span><span class="utt-text">It is old.</span></div>
+    <div class="utterance"><span class="speaker-tag spk-A">Customer</span><span class="utt-text">It's an old unit.</span></div>
+    <div class="utterance"><span class="speaker-tag spk-B">Tech</span><span class="utt-text">Right. So when it comes to just what to expect here in the future, I would say month to two months. I think we'll start to see the efficiency drop again. And we still have those mold issues. I did just want to show you some different equipment options.</span></div>
+    <div class="utterance"><span class="speaker-tag spk-A">Customer</span><span class="utt-text">Of course.</span></div>
+    <div class="utterance"><span class="speaker-tag spk-B">Tech</span><span class="utt-text">Oh, my goodness. Who is this?</span></div>
+    <div class="utterance"><span class="speaker-tag spk-A">Customer</span><span class="utt-text">Yeah, this is Michelangelo.</span></div>
+    <div class="utterance"><span class="speaker-tag spk-B">Tech</span><span class="utt-text">Michelangelo. I love cats. Get out of here. I have two cats and three dogs at home. So we have quite the chaos household.</span></div>
+    <div class="utterance"><span class="speaker-tag spk-A">Customer</span><span class="utt-text">We have two cats.</span></div>
+    <div class="utterance"><span class="speaker-tag spk-B">Tech</span><span class="utt-text">There you go. Yeah. So the two equipment options, or there's a total of four that I built. There's either we replace like for like, which will naturally be more efficient, even though it's just going to be the updated version of what you have. It's going to be a new furnace, new coil, new condenser, higher sear rating, better efficiency, but still like the same type of equipment. The next step beyond that is maintaining gas heating, electric cooling, but upgrading efficiency. And the interesting thing about that is that actually ends up being the most expensive one of the four that I've built. Are you familiar with natural gas phase outs?</span></div>
+    <div class="utterance"><span class="speaker-tag spk-A">Customer</span><span class="utt-text">No.</span></div>
+    <div class="utterance"><span class="speaker-tag spk-B">Tech</span><span class="utt-text">Okay. So it is something like, let's say, for instance, we have stove tops being phased out. We do have gas water heaters being phased out. We have gas furnaces being phased out. Are you familiar with what California's goal is in every home? They want every house to have a 200amp panel, have a backup generator. They want every house to have solar, and they want every house to have a heat pump. And so heat pumps are the next option. They actually just got introduced some more rebates. So even though those are the best possible system to install, weirdly enough, those actually are getting quite affordable at the moment.</span></div>
+    <div class="utterance"><span class="speaker-tag spk-A">Customer</span><span class="utt-text">I like to like higher efficiency and then two different — still same technology and then two heat pumps.</span></div>
+    <div class="utterance"><span class="speaker-tag spk-B">Tech</span><span class="utt-text">Exactly. And so to start off with, it's always important to realize these are more expensive investments than your normal investment into a home. So I just wanted you to understand that a lot of our clients do use different monthly options to take care of them. But let's just break down what we do...</span></div>
+    <div class="utterance"><span class="speaker-tag spk-B">Tech</span><span class="utt-text">10 year manufacturer warranty, 10 year compressor warranties. If you're on this maintenance program with us, we actually completely match the manufacturer warranties. It's essentially 10 years parts and 10 year manufacturer warranty.</span></div>
+    <div class="utterance"><span class="speaker-tag spk-B">Tech</span><span class="utt-text">The technology we're talking about with this heat pump is called an inverter. Have you ever heard of an inverter before?</span></div>
+    <div class="utterance"><span class="speaker-tag spk-A">Customer</span><span class="utt-text">I have, yeah.</span></div>
+    <div class="utterance"><span class="speaker-tag spk-B">Tech</span><span class="utt-text">Actually, you know what? I saw your mini split. It actually mimics that technology, but in a ducted sense. So that's a ductless heating and cooling system. This one we have that same type of inverter technology where it ramps up and ramps down, except we're just attaching it to the ductwork. So the main difference here just important to realize that it's going to heat and cool a little bit differently. In general, everything is going to be an improvement. Cooling will be significantly better. Usually we're talking like 60% utility bill savings.</span></div>
+    <div class="utterance"><span class="speaker-tag spk-A">Customer</span><span class="utt-text">I'm familiar with the heat pump.</span></div>
+    <div class="utterance"><span class="speaker-tag spk-B">Tech</span><span class="utt-text">You know about these? Perfect.</span></div>
+    <div class="utterance"><span class="speaker-tag spk-B">Tech</span><span class="utt-text">Silicon Valley Clean Energy — did you opt out of this program? You would have to manually opt out of it.</span></div>
+    <div class="utterance"><span class="speaker-tag spk-A">Customer</span><span class="utt-text">Yeah, I didn't.</span></div>
+    <div class="utterance"><span class="speaker-tag spk-B">Tech</span><span class="utt-text">Okay, so you're good. So Silicon Valley Clean Energy is $2,500 off towards heat pump updates. Next we have TECH which is one that just barely got reintroduced like yesterday. So that's really cool that it got introduced. And $1,500 off here.</span></div>
+    <div class="utterance"><span class="speaker-tag spk-B">Tech</span><span class="utt-text">Whenever you see Energy Star, that actually can qualify you for one further rebate that you have to deal with completely on your own. It's a tax cut rebate. And usually if you qualify for it, it's either $1,000 or $2,000.</span></div>
+    <div class="utterance"><span class="speaker-tag spk-A">Customer</span><span class="utt-text">And Bosch doesn't have that.</span></div>
+    <div class="utterance"><span class="speaker-tag spk-B">Tech</span><span class="utt-text">I can find out. Want me to just find out real quick?</span></div>
+    <div class="utterance"><span class="speaker-tag spk-A">Customer</span><span class="utt-text">Sure, sure.</span></div>
+    <div class="utterance"><span class="speaker-tag spk-B">Tech</span><span class="utt-text">It does have Energy Star. So the difference is this one will have... it won't have the high heat feature. So it's funny, they all end up being in the same price range.</span></div>
+    <div class="utterance"><span class="speaker-tag spk-A">Customer</span><span class="utt-text">Are defrosting — I had a heat pump before in another place. Never had a problem with it. Yeah, 20 years ago.</span></div>
+    <div class="utterance"><span class="speaker-tag spk-B">Tech</span><span class="utt-text">And it was here in California. Yeah. So I think it's just — it will just very rarely enter a defrost cycle. But this one just has that better feature.</span></div>
+    <div class="utterance"><span class="speaker-tag spk-A">Customer</span><span class="utt-text">Okay. And how long does it take to install the system?</span></div>
+    <div class="utterance"><span class="speaker-tag spk-B">Tech</span><span class="utt-text">If we are doing a heat pump, it's going to be roughly two or three days. Because there is a lot of work that goes into a heat pump. If it was a gas system to existing AC, I would say one to two days.</span></div>
+    <div class="utterance"><span class="speaker-tag spk-A">Customer</span><span class="utt-text">I would be interested in the heat pump. Maybe these two. I'm not interested in the gas.</span></div>
+    <div class="utterance"><span class="speaker-tag spk-B">Tech</span><span class="utt-text">Sure.</span></div>
+    <div class="utterance"><span class="speaker-tag spk-A">Customer</span><span class="utt-text">And then the other thing I noticed is that you also have financing?</span></div>
+    <div class="utterance"><span class="speaker-tag spk-B">Tech</span><span class="utt-text">I do, yeah. So we have 120 month, 8.99% interest with autopay. 180 months at 9.99%. This is our most commonly used. GoodLeap actually just barely just gave us access to this this month. The 12 months no interest just means that if you do pay it off in 12 months, you just pay the same as cash.</span></div>
+    <div class="utterance"><span class="speaker-tag spk-A">Customer</span><span class="utt-text">Okay, so look, I like to speak with my wife about all the options. Email me these and then of course I'll — let's cover what you did today and then I'll just discuss this with my wife.</span></div>
+    <div class="utterance"><span class="speaker-tag spk-B">Tech</span><span class="utt-text">Yeah. So how about this — let me bring the estimates down to just two of them. I'll just eliminate this one, eliminate that one. And the only thing I just want to make sure is clear on my end — it would be so much easier if I didn't have to charge for the repair today and if we actually just basically considered it as a complimentary thing for you. So if we did feel comfortable with signing, what that would just look like on your end would just be a $1,000 down payment.</span></div>
+    <div class="utterance"><span class="speaker-tag spk-A">Customer</span><span class="utt-text">No, we won't do that today. Just send me the estimates. I'll talk to her and then we'll make a decision.</span></div>
+    <div class="utterance"><span class="speaker-tag spk-B">Tech</span><span class="utt-text">Absolutely. And then within 15 days I will completely credit that back towards it. We always have a reputable three day right to cancel.</span></div>
+    <div class="utterance"><span class="speaker-tag spk-B">Tech</span><span class="utt-text">So great. We'll go ahead. I'll eliminate both of the gas options and we'll stay with the Bryant and the Bosch. And let me go ahead and get the $1,000 for today.</span></div>
+    <div class="utterance"><span class="speaker-tag spk-A">Customer</span><span class="utt-text">I think it's a MasterCard, if I can find it. There you go.</span></div>
+    <div class="utterance"><span class="speaker-tag spk-B">Tech</span><span class="utt-text">Great. Always important.</span></div>
+  </div>
+
+</main>
+
+<footer>
+  Transcribed with AssemblyAI · Analyzed with Claude · &copy; 2025 Service Call Analysis
+</footer>
+
+</body>
+</html>
