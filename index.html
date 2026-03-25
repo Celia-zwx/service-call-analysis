@@ -281,17 +281,17 @@
 
   <!-- Overall Score -->
   <div class="score-banner">
-    <div class="score-circle" style="--pct:72">
-      <span class="score-num">72%</span>
+    <div class="score-circle" style="--pct:65">
+      <span class="score-num">65%</span>
     </div>
     <div class="score-info" style="flex:1">
       <h2>Overall Compliance Score</h2>
-      <p>Strong sales execution and solution explanation. Key gaps: no technician/company introduction, and call ended abruptly with no thank-you or personal farewell.</p>
+      <p>Strong solution explanation and problem diagnosis. Key gaps: no professional introduction, no sign-today discount offer, no maintenance plan document, and no thank-you or farewell at close.</p>
       <div class="score-chips">
         <span class="chip chip-green">✓ Solution Explained</span>
         <span class="chip chip-green">✓ Problem Diagnosed</span>
-        <span class="chip chip-green">✓ Upsell Attempted</span>
-        <span class="chip chip-yellow">⚠ Partial Introduction</span>
+        <span class="chip chip-yellow">⚠ Upsell — Missing Sign-Today Discount</span>
+        <span class="chip chip-red">✗ No Professional Introduction</span>
         <span class="chip chip-red">✗ No Maintenance Plan Presented</span>
         <span class="chip chip-red">✗ No Thank-You / Farewell</span>
       </div>
@@ -302,8 +302,8 @@
   <div class="section-label">Compliance Scorecard</div>
   <div class="card" style="margin-bottom:1rem;">
     <div class="progress-row">
-      <div class="progress-label"><span>Introduction</span><span style="color:var(--warn)">50%</span></div>
-      <div class="progress-bar"><div class="progress-fill fill-yellow" style="width:50%"></div></div>
+      <div class="progress-label"><span>Introduction</span><span style="color:var(--danger)">20%</span></div>
+      <div class="progress-bar"><div class="progress-fill fill-red" style="width:20%"></div></div>
     </div>
     <div class="progress-row">
       <div class="progress-label"><span>Problem Diagnosis</span><span style="color:var(--success)">85%</span></div>
@@ -340,9 +340,17 @@
           <span>Greeting &amp; company identification</span>
         </div>
       </div>
-      <div class="status-badge status-partial">⚠ Partial</div>
-      <p>Technician greeted the customer by name (<strong>"Hey, Luis"</strong>) showing strong familiarity, but <strong>never stated their own name or company name</strong> during the call. The conversation moved immediately into the work completed without a formal self-introduction.</p>
-      <div class="quote"><span class="quote-ts">0:12</span><span class="quote-speaker">Tech:</span>"Hey, Luis. Got you all done. The reason that took so long is I just kind of also built all your equipment options…"</div>
+      <div class="status-badge status-fail">✗ Needs Improvement</div>
+      <p><strong>What happened:</strong> The technician greeted the customer by first name only and launched straight into the work recap. No name, no company, no warm professional welcome.</p>
+      <p style="margin-top:0.6rem"><strong>What should have happened:</strong> A strong professional introduction sets the tone for the entire visit — especially before a large purchase conversation. The technician should have:</p>
+      <ul style="margin-top:0.5rem; margin-left:1.2rem; font-size:0.85rem; color:var(--text-muted); line-height:1.8;">
+        <li>Stated their full name and company: <em>"Hi Luis, I'm [Name] from [Company] — great to see you again!"</em></li>
+        <li>Thanked the customer for their time and for having them in the home</li>
+        <li>Briefly set the agenda: <em>"I've finished the service and also put together some options for you — mind if I walk you through everything?"</em></li>
+        <li>Maintained a warm, professional tone rather than jumping straight to business</li>
+      </ul>
+      <p style="margin-top:0.6rem">A proper welcome builds trust from the first second — critical when the conversation will move toward a $20K+ decision.</p>
+      <div class="quote"><span class="quote-ts">0:12</span><span class="quote-speaker">Tech:</span>"Hey, Luis. Got you all done. The reason that took so long is I just kind of also built all your equipment options…" — <em>no name, no company, no professional welcome.</em></div>
     </div>
 
     <!-- Problem Diagnosis -->
@@ -383,10 +391,17 @@
           <span>Additional services &amp; products offered</span>
         </div>
       </div>
-      <div class="status-badge status-pass">✓ Strong</div>
-      <p>Multiple strategic upsells: <strong>duct sealing promotion</strong> (needed for HERS test rebate), <strong>Bosch heat pump</strong> added live when customer expressed a preference, <strong>waived repair charge</strong> as an incentive to sign same-day, and a <strong>$1,000 deposit</strong> collected at close.</p>
+      <div class="status-badge status-partial">⚠ Good — One Gap</div>
+      <p><strong>What went well:</strong> Multiple strong upsells — <strong>duct sealing promotion</strong> (unlocks HERS rebate), <strong>Bosch heat pump</strong> added live on the spot, <strong>waived repair charge</strong> as a same-day signing incentive, and a <strong>$1,000 deposit</strong> collected at close.</p>
+      <p style="margin-top:0.6rem"><strong>What was missing — Sign Today Discount:</strong> The technician offered to waive the repair fee if the customer signed same-day, but never framed it as an explicit <em>"sign today and save"</em> offer. A clear, time-boxed discount is a proven closing tool. For example:</p>
+      <ul style="margin-top:0.5rem; margin-left:1.2rem; font-size:0.85rem; color:var(--text-muted); line-height:1.8;">
+        <li><em>"If we can get you scheduled today, I can apply an additional $500 same-day discount on top of everything."</em></li>
+        <li><em>"We have an install slot open this week — if you lock it in now, I'll lock in this pricing too."</em></li>
+        <li>Combining a discount with schedule scarcity makes the offer feel both valuable and urgent</li>
+      </ul>
+      <p style="margin-top:0.6rem">Given the customer's clear interest in heat pumps, a concrete sign-today incentive could have converted the visit instead of leaving it at "I'll talk to my wife."</p>
       <div class="quote"><span class="quote-ts">20:50</span><span class="quote-speaker">Tech:</span>"I can build a form of inverter that does do that [top-venting]." — <em>added Bosch option live based on customer preference</em></div>
-      <div class="quote" style="margin-top:0.4rem"><span class="quote-ts">29:32</span><span class="quote-speaker">Tech:</span>"So much easier if I didn't have to charge for the repair today and if we actually just basically considered it as a complimentary thing for you."</div>
+      <div class="quote" style="margin-top:0.4rem"><span class="quote-ts">29:32</span><span class="quote-speaker">Tech:</span>"So much easier if I didn't have to charge for the repair today and if we actually just basically considered it as a complimentary thing for you." — <em>good incentive, but no explicit sign-today discount offer was made</em></div>
     </div>
 
     <!-- Maintenance Plan -->
