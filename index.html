@@ -292,7 +292,7 @@
         <span class="chip chip-green">✓ Problem Diagnosed</span>
         <span class="chip chip-green">✓ Upsell Attempted</span>
         <span class="chip chip-yellow">⚠ Partial Introduction</span>
-        <span class="chip chip-yellow">⚠ Maintenance Plan Mentioned Only</span>
+        <span class="chip chip-red">✗ No Maintenance Plan Presented</span>
         <span class="chip chip-red">✗ No Thank-You / Farewell</span>
       </div>
     </div>
@@ -318,8 +318,8 @@
       <div class="progress-bar"><div class="progress-fill fill-green" style="width:90%"></div></div>
     </div>
     <div class="progress-row">
-      <div class="progress-label"><span>Maintenance Plan Offer</span><span style="color:var(--warn)">65%</span></div>
-      <div class="progress-bar"><div class="progress-fill fill-yellow" style="width:65%"></div></div>
+      <div class="progress-label"><span>Maintenance Plan Offer</span><span style="color:var(--danger)">25%</span></div>
+      <div class="progress-bar"><div class="progress-fill fill-red" style="width:25%"></div></div>
     </div>
     <div class="progress-row">
       <div class="progress-label"><span>Closing &amp; Thank You</span><span style="color:var(--warn)">40%</span></div>
@@ -398,9 +398,18 @@
           <span>Long-term service agreements</span>
         </div>
       </div>
-      <div class="status-badge status-partial">⚠ Mentioned</div>
-      <p>Maintenance program was referenced as a <strong>warranty benefit</strong> — matching the manufacturer's 10-year parts and warranty — but was not pitched as a standalone recurring service agreement. No pricing or enrollment details were discussed, representing a <strong>missed upsell</strong>.</p>
-      <div class="quote"><span class="quote-ts">9:20</span><span class="quote-speaker">Tech:</span>"If you're on this maintenance program with us, we actually completely match the manufacturer warranties. It's essentially 10 years parts and 10 year manufacturer warranty."</div>
+      <div class="status-badge status-fail">✗ Needs Improvement</div>
+      <p><strong>What happened:</strong> The maintenance plan was dropped in a single sentence as a warranty perk — no plan name, no pricing, no document shown, no enrollment offer. The customer had no way to evaluate or say yes to it.</p>
+      <p style="margin-top:0.6rem"><strong>What should have happened:</strong> The technician should have paused and presented a concrete maintenance plan — ideally pulling up or handing over a physical or on-screen document showing:</p>
+      <ul style="margin-top:0.5rem; margin-left:1.2rem; font-size:0.85rem; color:var(--text-muted); line-height:1.8;">
+        <li>Plan tiers (e.g. Basic / Premium / Elite)</li>
+        <li>Annual or monthly pricing</li>
+        <li>What's included — tune-ups, priority scheduling, parts discounts, filter replacements</li>
+        <li>The warranty match benefit spelled out clearly in writing</li>
+        <li>A simple sign-up step: <em>"I can get you enrolled right now, takes 30 seconds"</em></li>
+      </ul>
+      <p style="margin-top:0.6rem">A physical brochure or a dedicated screen in the estimate app would have made this tangible and easy to say yes to — especially for a customer already writing a $1,000 deposit check.</p>
+      <div class="quote"><span class="quote-ts">9:20</span><span class="quote-speaker">Tech:</span>"If you're on this maintenance program with us, we actually completely match the manufacturer warranties. It's essentially 10 years parts and 10 year manufacturer warranty." — <em>only mention of the plan; no document, no pricing, no offer to enroll.</em></div>
     </div>
 
     <!-- Closing -->
@@ -455,7 +464,7 @@
       </li>
       <li>
         <span class="insight-icon">⚠️</span>
-        <div><strong>Missed: Maintenance plan pitch</strong> <span class="quote-ts">9:20</span> — Plan mentioned only as a warranty benefit. No standalone pricing or enrollment offer was made — a missed recurring revenue opportunity.</div>
+        <div><strong>Missed: Concrete maintenance plan presentation</strong> <span class="quote-ts">9:20</span> — Mentioned in one sentence as a warranty perk. No plan document, no pricing tiers, no enrollment offer. Should have pulled up a dedicated screen or brochure with plan options and asked: <em>"Can I get you set up on this today?"</em></div>
       </li>
       <li>
         <span class="insight-icon">⚠️</span>
