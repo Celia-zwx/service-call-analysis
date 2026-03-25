@@ -169,6 +169,26 @@
       font-style: italic;
       margin-top: 0.75rem;
     }
+    .quote-ts {
+      display: inline-block;
+      font-style: normal;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      color: var(--accent2);
+      background: rgba(0,201,167,0.1);
+      border-radius: 4px;
+      padding: 0.1rem 0.4rem;
+      margin-right: 0.4rem;
+      vertical-align: middle;
+    }
+    .quote-speaker {
+      font-style: normal;
+      font-size: 0.68rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      margin-right: 0.3rem;
+    }
 
     /* Call type card */
     .call-type-card {
@@ -322,7 +342,7 @@
       </div>
       <div class="status-badge status-partial">⚠ Partial</div>
       <p>Technician greeted the customer by name (<strong>"Hey, Luis"</strong>) showing strong familiarity, but <strong>never stated their own name or company name</strong> during the call. The conversation moved immediately into the work completed without a formal self-introduction.</p>
-      <div class="quote">"Hey, Luis. Got you all done. The reason that took so long is I just kind of also built all your equipment options…"</div>
+      <div class="quote"><span class="quote-ts">0:12</span><span class="quote-speaker">Tech:</span>"Hey, Luis. Got you all done. The reason that took so long is I just kind of also built all your equipment options…"</div>
     </div>
 
     <!-- Problem Diagnosis -->
@@ -336,7 +356,7 @@
       </div>
       <div class="status-badge status-pass">✓ Pass</div>
       <p>The technician clearly communicated findings: a <strong>20°F temperature differential</strong> improvement from the repair (was at 41°F below freezing), ongoing <strong>mold issues</strong>, and an aging refrigerant system still running on phased-out <strong>R410A</strong>. Called the repair a "bandaid" and predicted efficiency drop within <strong>1–2 months</strong>.</p>
-      <div class="quote">"Definitely bandaid. It is old… I would say month to two months. I think we'll start to see the efficiency drop again."</div>
+      <div class="quote"><span class="quote-ts">1:10</span><span class="quote-speaker">Tech:</span>"Definitely bandaid. It is old… I would say month to two months. I think we'll start to see the efficiency drop again."</div>
     </div>
 
     <!-- Solution Explanation -->
@@ -350,7 +370,8 @@
       </div>
       <div class="status-badge status-pass">✓ Excellent</div>
       <p>Provided an <strong>outstanding</strong> walkthrough of 4 replacement options: like-for-like (15 SEER, R32), high-efficiency gas, Bryant heat pump (inverter), and Bosch heat pump (top-venting). Explained rebates (<strong>SVCE $2,500</strong>, <strong>TECH $1,500</strong>, up to <strong>$2,000 tax credit</strong>), financing tiers, permits, HERS test, and duct sealing.</p>
-      <div class="quote">"Heat pumps are actually just got introduced some more rebates… those actually are getting quite affordable at the moment."</div>
+      <div class="quote"><span class="quote-ts">3:18</span><span class="quote-speaker">Tech:</span>"Heat pumps are actually just got introduced some more rebates… those actually are getting quite affordable at the moment."</div>
+      <div class="quote" style="margin-top:0.4rem"><span class="quote-ts">11:47</span><span class="quote-speaker">Tech:</span>"Silicon Valley Clean Energy is $2,500 off towards heat pump updates. Next we have TECH which just got reintroduced like yesterday. $1,500 off here."</div>
     </div>
 
     <!-- Upsell Attempts -->
@@ -364,7 +385,8 @@
       </div>
       <div class="status-badge status-pass">✓ Strong</div>
       <p>Multiple strategic upsells: <strong>duct sealing promotion</strong> (needed for HERS test rebate), <strong>Bosch heat pump</strong> added live when customer expressed a preference, <strong>waived repair charge</strong> as an incentive to sign same-day, and a <strong>$1,000 deposit</strong> collected at close.</p>
-      <div class="quote">"So much easier if I didn't have to charge for the repair today and if we actually just basically considered it as a complimentary thing for you."</div>
+      <div class="quote"><span class="quote-ts">20:50</span><span class="quote-speaker">Tech:</span>"I can build a form of inverter that does do that [top-venting]." — <em>added Bosch option live based on customer preference</em></div>
+      <div class="quote" style="margin-top:0.4rem"><span class="quote-ts">29:32</span><span class="quote-speaker">Tech:</span>"So much easier if I didn't have to charge for the repair today and if we actually just basically considered it as a complimentary thing for you."</div>
     </div>
 
     <!-- Maintenance Plan -->
@@ -378,7 +400,7 @@
       </div>
       <div class="status-badge status-partial">⚠ Mentioned</div>
       <p>Maintenance program was referenced as a <strong>warranty benefit</strong> — matching the manufacturer's 10-year parts and warranty — but was not pitched as a standalone recurring service agreement. No pricing or enrollment details were discussed, representing a <strong>missed upsell</strong>.</p>
-      <div class="quote">"If you're on this maintenance program with us, we actually completely match the manufacturer warranties. It's essentially 10 years parts and 10 year manufacturer warranty."</div>
+      <div class="quote"><span class="quote-ts">9:20</span><span class="quote-speaker">Tech:</span>"If you're on this maintenance program with us, we actually completely match the manufacturer warranties. It's essentially 10 years parts and 10 year manufacturer warranty."</div>
     </div>
 
     <!-- Closing -->
@@ -392,7 +414,9 @@
       </div>
       <div class="status-badge status-pass">✓ Good</div>
       <p>Handled the <em>"need to talk to my wife"</em> objection gracefully. Offered to <strong>send polished estimates</strong> for just the two heat pump options, communicated a <strong>3-day right to cancel</strong>, and collected a <strong>$1,000 deposit</strong>. No explicit verbal "thank you" was recorded, but the interaction remained professional and warm throughout.</p>
-      <div class="quote">"We always have a reputable three day right to cancel… I'll pretty his estimates up a little bit more and I'll include the duct sealing promotion."</div>
+      <div class="quote"><span class="quote-ts">29:08</span><span class="quote-speaker">Customer:</span>"I like to speak with my wife about all the options. Email me these and I'll discuss this with my wife."</div>
+      <div class="quote" style="margin-top:0.4rem"><span class="quote-ts">30:46</span><span class="quote-speaker">Tech:</span>"We always have a reputable three day right to cancel… I'll pretty the estimates up a little bit more and include the duct sealing promotion."</div>
+      <div class="quote" style="margin-top:0.4rem"><span class="quote-ts">31:52</span><span class="quote-speaker">Tech:</span>"Let me go ahead and get the $1,000 for today." — <em>deposit collected by end of call</em></div>
     </div>
 
   </div>
@@ -410,39 +434,39 @@
     <ul class="insight-list">
       <li>
         <span class="insight-icon">✅</span>
-        <div><strong>Strong rapport-building:</strong> Technician connected personally (cat conversation, mentioned colleague Alex), making the customer comfortable for a long consultative sale.</div>
+        <div><strong>Strong rapport-building</strong> <span class="quote-ts">1:49</span> — Cat conversation ("Michelangelo!"), mentioned colleague Alex by name. Built genuine personal connection before presenting any numbers.</div>
       </li>
       <li>
         <span class="insight-icon">✅</span>
-        <div><strong>Urgency via rebates:</strong> Highlighted that the TECH rebate was <em>"just reintroduced like yesterday"</em> — effective urgency trigger that creates a reason to act quickly.</div>
+        <div><strong>Urgency via rebates</strong> <span class="quote-ts">11:47</span> — <em>"TECH rebate just got reintroduced like yesterday"</em> — creates a compelling, time-sensitive reason to act now rather than delay.</div>
       </li>
       <li>
         <span class="insight-icon">✅</span>
-        <div><strong>Customer-adaptive selling:</strong> When Luis mentioned preferring top-venting units, the technician immediately built a Bosch estimate live — showing responsiveness and keeping the customer engaged.</div>
+        <div><strong>Customer-adaptive selling</strong> <span class="quote-ts">20:50</span> — When Luis said he prefers top-venting units, tech immediately built a live Bosch estimate on the spot. Kept customer engaged and showed responsiveness.</div>
       </li>
       <li>
         <span class="insight-icon">✅</span>
-        <div><strong>Education-first approach:</strong> Explained California gas phase-outs, inverter technology, HERS testing, and Energy Star rebates — positioning the technician as a trusted expert, not just a salesperson.</div>
+        <div><strong>Education-first approach</strong> <span class="quote-ts">3:00</span> — Walked through California gas phase-outs, inverter technology, HERS testing, R32 refrigerant, and Energy Star rebates. Positioned as trusted advisor, not just a salesperson.</div>
       </li>
       <li>
         <span class="insight-icon">✅</span>
-        <div><strong>Clear buying signals captured:</strong> Customer stated <em>"I would be interested in the heat pump. Maybe these two. I'm not interested in the gas."</em> — technician correctly narrowed scope to two options.</div>
+        <div><strong>Clear buying signal captured</strong> <span class="quote-ts">25:01</span> — Customer said <em>"I would be interested in the heat pump. Maybe these two. I'm not interested in the gas."</em> Tech correctly narrowed scope to Bryant + Bosch only.</div>
       </li>
       <li>
         <span class="insight-icon">⚠️</span>
-        <div><strong>Missed: Maintenance plan as a standalone product.</strong> The plan was only mentioned as a warranty perk. A dedicated pitch with pricing could have added recurring revenue.</div>
+        <div><strong>Missed: Maintenance plan pitch</strong> <span class="quote-ts">9:20</span> — Plan mentioned only as a warranty benefit. No standalone pricing or enrollment offer was made — a missed recurring revenue opportunity.</div>
       </li>
       <li>
         <span class="insight-icon">⚠️</span>
-        <div><strong>Missed: Referral ask.</strong> Strong rapport and a satisfied customer (post-repair relief evident) was a prime moment to ask for a referral or review — no ask was made.</div>
+        <div><strong>Missed: Referral ask</strong> <span class="quote-ts">32:07</span> — Call ended on a positive note (deposit collected, customer satisfied with repair). Prime moment for a review or referral ask — none was made.</div>
       </li>
       <li>
         <span class="insight-icon">⚠️</span>
-        <div><strong>Spouse objection not closed:</strong> The "need to discuss with wife" objection was accepted without attempting to schedule a follow-up call with both decision-makers present — a common lost-sale pattern.</div>
+        <div><strong>Spouse objection not closed</strong> <span class="quote-ts">29:08</span> — <em>"I like to speak with my wife"</em> was accepted without scheduling a follow-up call with both decision-makers. Common lost-sale pattern.</div>
       </li>
       <li>
         <span class="insight-icon">⚠️</span>
-        <div><strong>No company/technician name stated:</strong> The technician never introduced their own name or company name. For a ~$25K+ purchase, identity and brand trust are critical conversion factors.</div>
+        <div><strong>No name or company introduced</strong> <span class="quote-ts">0:12</span> — Tech jumped straight into the work recap. For a $20K–$30K purchase decision, brand trust and technician identity are critical conversion factors.</div>
       </li>
     </ul>
   </div>
